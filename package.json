@@ -1,0 +1,28 @@
+{
+  "name": "gated-community-ai",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node ./server.js",
+    "dev": "node ./server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@google/generative-ai": "^0.24.0",
+    "axios": "^1.7.9",
+    "bcryptjs": "^3.0.2",
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "emoji-picker-react": "^4.12.0",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.12.1",
+    "ollama": "^0.5.14",
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1"
+  }
+}
