@@ -15,7 +15,7 @@ const server = http.createServer(app);
 
 // Enhanced CORS configuration
 const corsOptions = {
-  origin: "*",
+  origin: "https://aiskillconnect.vercel.app",
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
   credentials: true,
@@ -30,7 +30,7 @@ app.use(cors(corsOptions));
 const io = new Server(server, {
   path: "/chat",
   cors: {
-    origin: "*",
+    origin: "https://aiskillconnect.vercel.app",
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
     credentials: true
@@ -41,7 +41,7 @@ const io = new Server(server, {
 app.use(express.json());
 
 // Preflight CORS handler for all routes
-app.options('*', cors(corsOptions));
+// app.options('*', cors(corsOptions));
 
 // Routes
 app.use('/api/users', userRoutes);
