@@ -1,1 +1,40 @@
+# Node.js dependencies
+node_modules/
+*.log
+
+# Environment variables
+.env
+
+# Build outputs
+build/
+dist/
+
+# IDE and editor settings
+.vscode/
+.idea/
+*.iml
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Coverage reports
+coverage/
+
+# Temporary files
+*.tmp
+*.swp
+
+# Frontend-specific files
+frontend/node_modules/
+frontend/build/
+frontend/.env.local
+frontend/.pnp
+frontend/.pnp.js
+frontend/coverage/
+
+# Backend-specific files
+backend/node_modules/
+backend/.env
+backend/coverage/
 .vercel
