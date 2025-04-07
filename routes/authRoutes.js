@@ -40,8 +40,7 @@ router.post("/register", async (req, res) => {
 
 
 
-
-const JWT_SECRET = "Siddhu12345"; // Replace with a strong secret key
+// Replace with a strong secret key
 
 // Login User
 router.post("/login", async (req, res) => {
@@ -62,7 +61,7 @@ router.post("/login", async (req, res) => {
         // Generate JWT Token
         const token = jwt.sign(
             { userId: user._id },
-            JWT_SECRET,
+             process.env.JWT_SECRET,
             { expiresIn: "7d" } // Token valid for 7 days
         );
 

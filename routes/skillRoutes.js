@@ -305,69 +305,7 @@ router.post("/generate", async (req, res) => {
   }
 });
 
-
-// router.post("/validate-answers", async (req, res) => {
-//   try {
-//     const { userId, answers } = req.body;
-
-//     if (!mongoose.Types.ObjectId.isValid(userId)) {
-//       return res.status(400).json({ message: "Invalid User ID format" });
-//     }
-
-//     // Fetch stored questions from MongoDB
-//     const application = await Application.findOne({ userId });
-//     if (!application || !application.questions) {
-//       return res.status(400).json({ message: "No questions found for validation" });
-//     }
-
-//     const questions = application.questions;
-//     let score = 0;
-
-//     // 🛠 Debugging: Log received answers & stored questions
-//     console.log("User Answers:", answers);
-//     console.log("Stored Questions:", questions);
-
-//     // Compare answers
-//     questions.forEach((q) => {
-//       const userAnswer = answers[q.question]; // Get user's selected answer
-//       const correctAnswer = q.correct_answer; // Get correct answer from DB
-
-//       console.log(`\n🔹 Question: ${q.question}`);
-//       console.log(`   🟢 Correct Answer: ${correctAnswer}`);
-//       console.log(`   🔴 User Answer: ${userAnswer}`);
-
-//       // ✅ Extract the letter (A, B, C, D) from user's answer before comparison
-//       const selectedOptionLetter = userAnswer?.split(".")[0].trim(); // Extract 'C' from 'C. Keras'
-
-//       console.log(`   🔍 Extracted Option: ${selectedOptionLetter}`);
-
-//       if (selectedOptionLetter && selectedOptionLetter === correctAnswer) {
-//         score += 1; // Increase score for each correct answer
-//       }
-//     });
-
-//     // Calculate earned credits (e.g., 10 credits per correct answer)
-//     const earnedCredits = score * 10;
-
-//     // Update and fetch the updated user credits
-//     const updatedUser = await UserModel.findByIdAndUpdate(
-//       userId,
-//       { $inc: { credits: earnedCredits } },
-//       { new: true } // Returns updated user data
-//     );
-
-//     res.json({ 
-//       success: true, 
-//       score, 
-//       updatedCredits: updatedUser.credits, 
-//       message: `Your score is ${score}. Credits updated to ${updatedUser.credits}.` 
-//     });
-//   } catch (error) {
-//     console.error("Answer Validation Error:", error);
-//     res.status(500).json({ message: "Failed to validate answers" });
-//   }
-// });
-
+// Route to validate answers
 router.post("/validate-answers", async (req, res) => {
   try {
     const { userId, answers } = req.body;

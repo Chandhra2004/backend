@@ -15,7 +15,7 @@ const server = http.createServer(app);
 
 // Enhanced CORS configuration
 const corsOptions = {
-  origin: "https://aiskillconnect.vercel.app",
+  origin: ["http://localhost:3000", "https://aiskillconnect.vercel.app"],
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
   credentials: true,
