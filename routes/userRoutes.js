@@ -2,7 +2,6 @@ const express = require('express');
 const User = require('../models/User');
 const authMiddleware = require('../middleware/authMiddleware');
 const router = express.Router();
-// const authMiddleware = require(authMiddleware);
 
 // Create or Update User
 router.post('/update-skills', async (req, res) => {
@@ -22,7 +21,7 @@ router.post('/update-skills', async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 });
- // Make sure this path is correct
+ 
 
 // Update user credits
 router.put("/update-credits/:userId", async (req, res) => {
@@ -30,13 +29,13 @@ router.put("/update-credits/:userId", async (req, res) => {
     const { userId } = req.params;
     const { credits } = req.body;
 
-    // Check if user exists
+    
     const user = await User.findById(userId);
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
 
-    // Update credits
+    
     user.credits = credits;
     await user.save();
 
@@ -72,7 +71,7 @@ router.get('/:userId', async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-    res.json(user); // Send user data to frontend
+    res.json(user); 
   } catch (err) {
     res.status(500).json({ message: "Server error" });
   }
@@ -81,7 +80,7 @@ router.get('/:userId', async (req, res) => {
 
 router.get("/:userId", authMiddleware, async (req, res) => {
   try {
-    const user = await User.findById(req.user).select("-password"); // Exclude password
+    const user = await User.findById(req.user).select("-password"); 
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }

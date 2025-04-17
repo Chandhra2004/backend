@@ -11,16 +11,16 @@ router.post("/register", async (req, res) => {
     try {
       const { name, email, password, mobile, title,address } = req.body;
   
-      // Check if user already exists
+      
       const existingUser = await User.findOne({ email });
       if (existingUser) {
         return res.status(400).json({ message: "Email already registered" });
       }
   
-      // Hash password
+      
       const hashedPassword = await bcrypt.hash(password, 10);
   
-      // Create new user
+      
       const newUser = new User({
         name,
         email,
@@ -40,7 +40,7 @@ router.post("/register", async (req, res) => {
 
 
 
-// Replace with a strong secret key
+
 
 // Login User
 router.post("/login", async (req, res) => {
@@ -52,23 +52,23 @@ router.post("/login", async (req, res) => {
             return res.status(400).json({ success: false, message: "User not found" });
         }
 
-        // Verify the password
+        
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
             return res.status(400).json({ success: false, message: "Invalid credentials" });
         }
 
-        // Generate JWT Token
+        
         const token = jwt.sign(
             { userId: user._id },
              process.env.JWT_SECRET,
-            { expiresIn: "7d" } // Token valid for 7 days
+            { expiresIn: "7d" } 
         );
 
-        // Send response with token
+        
         res.status(200).json({
             success: true,
-            token, // Send JWT token
+            token, 
             user: {
                 userId: user._id,
                 name: user.name,

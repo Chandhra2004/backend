@@ -2,17 +2,17 @@ const mongoose = require("mongoose");
 
 const SkillSchema = new mongoose.Schema({
   userId: {
-    type: mongoose.Schema.Types.ObjectId, // Reference to the user
+    type: mongoose.Schema.Types.ObjectId, 
     required: true,
     unique: true
   },
   skills: {
-    type: [String], // Array of detected skills
+    type: [String], 
     default: []
   },
   detectedAt: {
     type: Date,
-    default: Date.now // Timestamp for when skills were detected
+    default: Date.now 
   }
 });
 

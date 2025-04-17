@@ -9,7 +9,7 @@ router.get("/conversations/:userId", async (req, res) => {
   try {
     const { userId } = req.params;
     
-    // Validate userId is a valid ObjectId first
+    
     if (!mongoose.Types.ObjectId.isValid(userId)) {
       return res.status(400).json({ message: "Invalid user ID format" });
     }
@@ -36,7 +36,7 @@ router.get("/conversations/:userId", async (req, res) => {
           messageCount: { $sum: 1 }
         },
       },
-      { $sort: { lastTimestamp: -1 } }, // Sort by most recent
+      { $sort: { lastTimestamp: -1 } }, 
     ]);
 
     const conversationDetails = await Promise.all(
@@ -84,7 +84,7 @@ router.get("/:senderId/:receiverId", async (req, res) => {
   try {
     const { senderId, receiverId } = req.params;
     
-    // Validate both IDs
+    
     if (!mongoose.Types.ObjectId.isValid(senderId) || !mongoose.Types.ObjectId.isValid(receiverId)) {
       return res.status(400).json({ message: "Invalid user ID format" });
     }
@@ -94,7 +94,7 @@ router.get("/:senderId/:receiverId", async (req, res) => {
         { sender: senderId, receiver: receiverId },
         { sender: receiverId, receiver: senderId },
       ],
-    }).sort({ timestamp: 1 }); // Sort by timestamp ascending
+    }).sort({ timestamp: 1 }); 
     
     res.json(messages);
   } catch (error) {
@@ -108,12 +108,12 @@ router.post("/", async (req, res) => {
   try {
     const { sender, receiver, message, type = "text" } = req.body;
     
-    // Validate required fields
+    
     if (!sender || !receiver || (!message && type === "text")) {
       return res.status(400).json({ message: "Missing required fields" });
     }
     
-    // Validate ObjectIds
+    
     if (!mongoose.Types.ObjectId.isValid(sender) || !mongoose.Types.ObjectId.isValid(receiver)) {
       return res.status(400).json({ message: "Invalid user ID format" });
     }
